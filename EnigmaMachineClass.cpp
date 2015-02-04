@@ -2,7 +2,16 @@
 #include <string>
 #include <vector>
 
-
+#define ASSERT_TRUE(EXPECTED, ACTUAL) \
+std::cout << "Asserting that " << #EXPECTED << " is " << #ACTUAL <<": "; \
+if (EXPECTED == ACTUAL) \
+{\
+	std::cout << "SUCCESS!\n"; \
+} \
+else \
+{ \
+	std::cout << "FAIL\n"; \
+}
 
 
 int charToNum(char x)//Converts a capital A-Z into a number from 0-25 and implements wrap around
