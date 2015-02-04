@@ -1,6 +1,19 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
+std::vector construct_shifts(const std::string &wiring)
+{
+	//Write this function
+	#error Unimplemented
+}
+
+char shift_char(char c, int offset)
+{
+	//Write this function
+	#error Unimplemented
+
+}
 
 int charToNum(char x)
 
@@ -51,6 +64,7 @@ int array1[25];
 int off = 0;
 int encrypted = 0;
 
+//This needs to be a function
 for (int i = 0; i < 26; i++)
 {
 	array1[i] = charToNum(rotor1[i]) - charToNum(alpha[i]);
