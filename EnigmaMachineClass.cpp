@@ -81,6 +81,8 @@ char shift_char(char c, int offset)//Encrypts the input char, A-Z, and returns t
 
 void test_suite()//Tests conditions.
 {
+	//try
+	ASSERT_TRUE('B', shift_char('A', 1))
 	if (shift_char('A', 1) == 'B')
 	{
 		std::cout << "Success!" << std::endl;
