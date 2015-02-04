@@ -58,8 +58,9 @@ char numToChar(int n)//Converts a number, from 0-25, to a capital letter A-Z
 
 	return(populatedArray[25]);
 }*/
-std::vector<int> construct_shifts(const std::string &wiring, std::string &alpha, std::vector<int> populatedVector)//Please suggest improvements here. Not sure if correct.
+std::vector<int> construct_shifts(const std::string &wiring, const std::string &alpha)//Please suggest improvements here. Not sure if correct.
 {
+	std::vector<int> populatedVector;
 	for (int i = 0; i < 26; i++)
 	{
 
@@ -95,35 +96,40 @@ void test_suite()//Tests conditions.
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}if (shift_char('A', -1) == 'Z')
+	}
+	if (shift_char('A', -1) == 'Z')
 	{
 		std::cout << "Success!" << std::endl;
 	}
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}if (shift_char('Z', 1) == 'A')
+	}
+	if (shift_char('Z', 1) == 'A')
 	{
 		std::cout << "Success!" << std::endl;
 	}
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}if (shift_char('A', 27) == 'B')
+	}
+	if (shift_char('A', 27) == 'B')
 	{
 		std::cout << "Success!" << std::endl;
 	}
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}if (shift_char('A', 26) == 'A')
+	}
+	if (shift_char('A', 26) == 'A')
 	{
 		std::cout << "Success!" << std::endl;
 	}
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}if (shift_char('A', -26) == 'A')
+	}
+	if (shift_char('A', -26) == 'A')
 	{
 		std::cout << "Success!" << std::endl;
 	}
@@ -144,7 +150,7 @@ std::vector<int> populatedVector;
 //int offset = 0;
 
 
-populatedVector = construct_shifts(wiring, alpha, populatedVector);//Seems like this should go somewhere else
+populatedVector = construct_shifts(wiring, alpha);//Seems like this should go somewhere else
 
 /*std::cout << "Enter a letter to Encrypt: " << std::endl;
 std::cin >> x;
@@ -158,7 +164,13 @@ for (int j = 0; j < 26; j++)
 	}
 }
 std::cout << shift_char(x, offset);*/
-
+/*ASSERT_TRUE("A + 1", 'B')
+ASSERT_TRUE("B - 1", 'A')
+ASSERT_TRUE("A - 1", 'Z')
+ASSERT_TRUE("Z + 1", 'A')
+ASSERT_TRUE("A + 27", 'B')
+ASSERT_TRUE("A + 26", 'A')
+ASSERT_TRUE("A - 26", 'A')*/
 test_suite();
 return(0);
 }
