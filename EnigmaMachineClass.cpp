@@ -82,8 +82,14 @@ char shift_char(char c, int offset)//Encrypts the input char, A-Z, and returns t
 void test_suite()//Tests conditions.
 {
 	//try
-	ASSERT_TRUE('B', shift_char('A', 1))
-	if (shift_char('A', 1) == 'B')
+	ASSERT_TRUE('B', shift_char('A', 1));
+	ASSERT_TRUE('A', shift_char('B', -1));
+	ASSERT_TRUE('Z', shift_char('A', -1));
+	ASSERT_TRUE('A', shift_char('Z', 1));
+	ASSERT_TRUE('B', shift_char('A', 27));
+	ASSERT_TRUE('A', shift_char('A', 26));
+	ASSERT_TRUE('A', shift_char('A', -26));
+	/*if (shift_char('A', 1) == 'B')
 	{
 		std::cout << "Success!" << std::endl;
 	}
@@ -138,7 +144,7 @@ void test_suite()//Tests conditions.
 	else
 	{
 		std::cout << "Failure!" << std::endl;
-	}
+	}*/
 
 }
 
@@ -166,13 +172,6 @@ for (int j = 0; j < 26; j++)
 	}
 }
 std::cout << shift_char(x, offset);*/
-/*ASSERT_TRUE("A + 1", 'B')
-ASSERT_TRUE("B - 1", 'A')
-ASSERT_TRUE("A - 1", 'Z')
-ASSERT_TRUE("Z + 1", 'A')
-ASSERT_TRUE("A + 27", 'B')
-ASSERT_TRUE("A + 26", 'A')
-ASSERT_TRUE("A - 26", 'A')*/
 test_suite();
 return(0);
 }
