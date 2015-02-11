@@ -63,17 +63,31 @@ std::vector<int> construct_shifts(const std::string &wiring, const std::string &
 	std::vector<int> populatedVector;
 	for (int i = 0; i < 26; i++)
 	{
-
 		populatedVector.push_back(charToNum(wiring[i]) - charToNum(alpha[i]));
 	}
 
 	return(populatedVector);
 }
 
+std::vector<int> reverseConstruct_shifts(const std::string &wiring, const std::string &alpha)//Please suggest improvements here. Not sure if correct.
+{
+	std::vector<int> reversePopulatedVector(26);
+	for (int i = 0; i < 26; i++)
+	{
+		reversePopulatedVector[charToNum(wiring[i])] = (charToNum(alpha[i]) - charToNum(wiring[i]));
+		//std::cout <<(charToNum(alpha[i]) - charToNum(wiring[i])) << std::endl;
+	}
+
+	return(reversePopulatedVector);
+}
+
+
 char shift_char(char c, int offset)//Encrypts the input char, A-Z, and returns the encrypted char, A-Z
 {
+
 	int EncryptedNum;
 	char EncryptedChar;
+	std::cout << "charToNum is: " << charToNum(c) << " offset is: " << offset << std::endl;
 	EncryptedNum = charToNum(c) + offset;
 	EncryptedChar = numToChar(EncryptedNum);
 	return(EncryptedChar);
@@ -89,78 +103,31 @@ void test_suite()//Tests conditions.
 	ASSERT_TRUE('B', shift_char('A', 27));
 	ASSERT_TRUE('A', shift_char('A', 26));
 	ASSERT_TRUE('A', shift_char('A', -26));
-	/*if (shift_char('A', 1) == 'B')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('B', -1) == 'A')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('A', -1) == 'Z')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('Z', 1) == 'A')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('A', 27) == 'B')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('A', 26) == 'A')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}
-	if (shift_char('A', -26) == 'A')
-	{
-		std::cout << "Success!" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failure!" << std::endl;
-	}*/
 
 }
-
+/*void dump_vec(const std::vector<int> nums)
+{
+	std::cout << "Dumping vector:\n" << std::endl;
+	for (auto i : nums)
+	{
+		std::cout << i << std::endl;
+	}
+}*/
 
 int main()
 {
-//char x;
+char x;
 std::string wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
 std::string alpha = "ABCDEFGHIJKLMNOPQRSTUVQXYZ";
 std::vector<int> populatedVector;
-//int offset = 0;
+std::vector<int> reversePopulatedVector;
+int offset = 0;
 
 
 populatedVector = construct_shifts(wiring, alpha);//Seems like this should go somewhere else
-
-/*std::cout << "Enter a letter to Encrypt: " << std::endl;
+reversePopulatedVector = reverseConstruct_shifts(wiring, alpha);
+//dump_vec(reversePopulatedVector);
+std::cout << "Enter a letter to Encrypt: " << std::endl;
 std::cin >> x;
 
 
@@ -168,10 +135,12 @@ for (int j = 0; j < 26; j++)
 {
 	if (x == alpha[j])
 	{
-		offset = populatedVector[j];
+		offset = reversePopulatedVector[j];
 	}
 }
-std::cout << shift_char(x, offset);*/
-test_suite();
+//std::cout << offset << std::endl;
+
+std::cout << shift_char(x, offset) ;
+
 return(0);
 }
