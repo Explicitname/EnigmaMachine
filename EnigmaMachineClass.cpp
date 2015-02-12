@@ -105,40 +105,57 @@ void test_suite()//Tests conditions.
 	ASSERT_TRUE('A', shift_char('A', -26));
 
 }
-/*void dump_vec(const std::vector<int> nums)
+
+int getOffset(char f, char x)
+
 {
-	std::cout << "Dumping vector:\n" << std::endl;
-	for (auto i : nums)
+	int offset = 0;
+	std::string wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+	std::string alpha = "ABCDEFGHIJKLMNOPQRSTUVQXYZ";
+	std::vector<int> populatedVector;
+	std::vector<int> reversePopulatedVector;
+
+	if (f == 'F' || f == 'f')
 	{
-		std::cout << i << std::endl;
+		populatedVector = construct_shifts(wiring, alpha);
+		for (int i = 0; i < 26; i++)
+		{
+			if (x == alpha[i])
+			{
+				offset = populatedVector[i];
+			}
+		}
 	}
-}*/
+	else
+	{
+		reversePopulatedVector = reverseConstruct_shifts(wiring, alpha);
+		for (int j = 0; j < 26; j++)
+		{
+			if (x == alpha[j])
+			{
+				offset = reversePopulatedVector[j];
+			}
+		}
+	}
+
+
+	return(offset);
+}
 
 int main()
 {
 char x;
-std::string wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-std::string alpha = "ABCDEFGHIJKLMNOPQRSTUVQXYZ";
-std::vector<int> populatedVector;
-std::vector<int> reversePopulatedVector;
+char direction;
+
 int offset = 0;
 
 
-populatedVector = construct_shifts(wiring, alpha);//Seems like this should go somewhere else
-reversePopulatedVector = reverseConstruct_shifts(wiring, alpha);
 //dump_vec(reversePopulatedVector);
-std::cout << "Enter a letter to Encrypt: " << std::endl;
-std::cin >> x;
+std::cout << "Would you like to go forward or reverse? " << std::endl;
+std::cin >> direction;
 
 
-for (int j = 0; j < 26; j++)
-{
-	if (x == alpha[j])
-	{
-		offset = reversePopulatedVector[j];
-	}
-}
-//std::cout << offset << std::endl;
+
 
 std::cout << shift_char(x, offset) ;
 
